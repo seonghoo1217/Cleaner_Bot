@@ -43,6 +43,8 @@ public class BotListener extends ListenerAdapter {
 		switch (message){
 			case "안녕" : returnedMessage=user.getName() + "님 안녕하세요! 좋은 저녁입니다";
 			break;
+			case "문어" : returnedMessage="나는 문어 꿈을 꾸는 문어~";
+			break;
 		}
 
 		return returnedMessage;
