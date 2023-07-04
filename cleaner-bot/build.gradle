@@ -34,7 +34,7 @@ dependencies {
     // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml-schemas
     implementation 'org.apache.poi:poi-ooxml-schemas:4.1.2'
     implementation 'org.apache.poi:poi-ooxml:4.1.2' // 사용하는 POI 버전에 맞게 버전을 지정하세요
-    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    implementation 'com.google.code.gson:gson:2.8.9'
 
 }
 
