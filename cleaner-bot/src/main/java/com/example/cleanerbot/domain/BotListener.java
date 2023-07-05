@@ -13,6 +13,7 @@ import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageHistory;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
+import net.dv8tion.jda.api.entities.channel.concrete.VoiceChannel;
 import net.dv8tion.jda.api.entities.channel.unions.MessageChannelUnion;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -39,7 +40,13 @@ public class BotListener extends ListenerAdapter{
 	@SneakyThrows
 	public void onMessageReceived(MessageReceivedEvent event) {
 		User user = event.getAuthor();
-		TextChannel textChannel = event.getChannel().asTextChannel();
+		TextChannel textChannel = null;
+		VoiceChannel voiceChannel = null;
+		if (isVoiceChannel(event)){
+			voiceChannel= event.getChannel().asVoiceChannel();
+		}else {
+			textChannel = event.getChannel().asTextChannel();
+		}
 		Message message = event.getMessage();
 
 		log.info("get Message : "+ message.getContentDisplay());
@@ -61,7 +68,11 @@ public class BotListener extends ListenerAdapter{
 //			}
 			String responseMsg = sendMessage(event, messageArgs);
 			if (responseMsg.length()>0){
-				textChannel.sendMessage(responseMsg).queue();
+				if (isVoiceChannel(event)){
+					voiceChannel.sendMessage(responseMsg).queue();
+				}else {
+					textChannel.sendMessage(responseMsg).queue();
+				}
 			}
 		}
 	}
@@ -126,5 +137,9 @@ public class BotListener extends ListenerAdapter{
 				.area2(msgArgs[2])
 				.area3(msgArgs[3])
 				.build();
+	}
+
+	private boolean isVoiceChannel(MessageReceivedEvent event){
+		return event.getChannel().toString().contains("Voice");
 	}
 }
