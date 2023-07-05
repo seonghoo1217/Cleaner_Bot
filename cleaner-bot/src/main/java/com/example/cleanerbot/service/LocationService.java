@@ -13,14 +13,14 @@ import java.io.*;
 @Service
 @RequiredArgsConstructor
 public class LocationService {
-	public static final String FILE_PATH= "data/location_info.xlsx";
+	public static final String FILE_PATH= "classpath:data/location_info.xlsx";
 
 	private final ResourceLoader resourceLoader;
 
 
 	public LocationRes readLocationValueOnFile(LocationReq locationReq) throws IOException {
 //		File file = new File(FILE_PATH);
-		Resource resource = resourceLoader.getResource("classpath:data/location_info.xlsx");
+		Resource resource = resourceLoader.getResource(FILE_PATH);
 //		FileInputStream fileInputStream = new FileInputStream(FILE_PATH);
 		Workbook workbook = WorkbookFactory.create(resource.getInputStream());
 		Sheet sheet = workbook.getSheetAt(0);
@@ -34,10 +34,11 @@ public class LocationService {
 			if (conditionA.contains(locationReq.getArea1())
 					&& conditionB.contains(locationReq.getArea2())
 						&& conditionC.contains(locationReq.getArea3())){
-				System.out.println("조건 부합 지역찾음");
+
 				return LocationRes.builder()
 						.x((row.getCell(3).toString()))
 						.y((row.getCell(4).toString()))
+						.inputArea(conditionA+" "+conditionB+" "+conditionC)
 						.build();
 			}
 		}

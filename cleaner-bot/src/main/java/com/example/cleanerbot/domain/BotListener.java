@@ -77,8 +77,10 @@ public class BotListener extends ListenerAdapter{
 			break;
 			case "클리너" : deleteChannelMessage(event,msgArgs,user);
 			break;
-			case "날씨" : weatherService.getWeatherInfoUsedToAPI(locationService.readLocationValueOnFile(formationToObject(msgArgs)));
-			break;
+			case "날씨" :
+				String weatherAPIResult = weatherService.getWeatherInfoUsedToAPI(locationService.readLocationValueOnFile(formationToObject(msgArgs)));
+				if(weatherAPIResult.length()!=0) returnedMessage=weatherAPIResult;
+				break;
 		}
 
 		return returnedMessage;

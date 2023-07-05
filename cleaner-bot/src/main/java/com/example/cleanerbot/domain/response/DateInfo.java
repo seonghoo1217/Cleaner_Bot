@@ -5,11 +5,8 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class LocationRes {
-	private String x;
+public class DateInfo {
+	private String date;
 
-	private String y;
-
-
-	private String inputArea;
+	private String time;
 }
