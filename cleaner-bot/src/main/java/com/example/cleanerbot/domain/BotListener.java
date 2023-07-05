@@ -99,13 +99,6 @@ public class BotListener extends ListenerAdapter{
 
 	private void deleteChannelMessage(MessageReceivedEvent event,String[] msgArgs,User user){
 		MessageChannelUnion channel = event.getChannel();
-		TextChannel textChannel = event.getChannel().asTextChannel();
-		if (textChannel == null) {
-			System.out.println("Not Found Channel");
-			return;
-		}
-
-		System.out.println("채널 이름 :" +textChannel.getName());
 
 		if(user.getId().equals(ADMIN_ID)){
 			//forEachAsync :JDA에서 Loop를 통해 비동기적으로 메시지를 처리하는 방법

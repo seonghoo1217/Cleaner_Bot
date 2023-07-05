@@ -128,15 +128,15 @@ public class WeatherService {
 	private String getWeatherInfoToString(WeatherInfo weatherInfo,String userArea){
 		StringBuilder sb=new StringBuilder();
 		DateInfo di = getDateInfoToObject();
-		sb.append("날짜 :").append(di.getDate()).append(" 시간 :").append(di.getTime()).append("를 기준으로 기상청 API를 통해 알려드립니다.");
+		sb.append("**날짜 :**").append(di.getDate()).append(" **시간 :**").append(di.getTime()).append("를 기준으로 기상청 API를 통해 알려드립니다.");
 		sb.append("\n");
 		sb.append("\n");
-		sb.append(userArea+" 지역의 정보를 알려드리겠습니다.").append("\n \n");
-		sb.append("평균기온은 ").append(weatherInfo.getTMP()).append("이며, ")
-						.append("최저 기온은 ").append(weatherInfo.getTMN())
-								.append("최고 기온은 ").append(weatherInfo.getTMX()).append("입니다.\n");
-		sb.append("강수량은 ").append(weatherInfo.getPOP()).append("이며, ")
-						.append("습도는 ").append(weatherInfo.getREH()).append("입니다.");
+		sb.append("**").append(userArea+"** 지역의 정보를 알려드리겠습니다.").append("\n \n");
+		sb.append("**평균기온**은 ").append(weatherInfo.getTMP()).append("°C이며, ")
+						.append("**최저 기온**은 ").append(weatherInfo.getTMN())
+								.append("**최고 기온**은 ").append(weatherInfo.getTMX()).append("°C입니다.\n");
+		sb.append("**강수확률**은 ").append(weatherInfo.getPOP()).append("%이며, ")
+						.append("**습도**는 ").append(weatherInfo.getREH()).append("%입니다.");
 		return sb.toString();
 	}
 
