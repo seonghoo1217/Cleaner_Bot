@@ -144,50 +144,29 @@ public class WeatherService {
 		int H = LocalDateTime.now().getHour();
 		int M = LocalDateTime.now().getMinute();
 		LocalDate now = LocalDate.now();
-		if ((H<=0)&&(H<=2&&M<10)){
-			return getFormationToDateInfo(
-					getDateInfoToString(now.minusDays(1)),"2300"
-			);
-		}
-		else if (H<=5&&M<10){
-			return getFormationToDateInfo(
-					getDateInfoToString(now),"0200"
-			);
-		}
-		else if (H<=8&&M<10){
-			return getFormationToDateInfo(
-					getDateInfoToString(now),"0500"
-			);
-		}
-		else if (H<=11&&M<10){
-			return getFormationToDateInfo(
-					getDateInfoToString(now),"0800"
-			);
-		}
-		else if (H<=14&&M<10){
-			return getFormationToDateInfo(
-					getDateInfoToString(now),"1100"
-			);
-		}
-		else if (H<=17&&M<10){
-			return getFormationToDateInfo(
-					getDateInfoToString(now),"1400"
-			);
-		}
-		else if (H<=20&&M<10){
-			return getFormationToDateInfo(
-					getDateInfoToString(now),"1700"
-			);
-		}
-		else if (H<=23&&M<10){
-			return getFormationToDateInfo(
-					getDateInfoToString(now),"2000"
-			);
-		}
-		else {
-			return getFormationToDateInfo(
-					getDateInfoToString(now),"2300"
-			);
+		System.out.println("H="+H);
+		System.out.println("M="+M);
+
+		if (H <= 2 && M < 10) {
+			LocalDate nowTime = now.minusDays(1);
+			System.out.println("Log=" + nowTime);
+			return getFormationToDateInfo(getDateInfoToString(nowTime), "2300");
+		} else if (H >= 2 && H <= 5 && M < 10) {
+			return getFormationToDateInfo(getDateInfoToString(now), "0200");
+		} else if (H >= 5 && H <= 8 && M < 10) {
+			return getFormationToDateInfo(getDateInfoToString(now), "0500");
+		} else if (H >= 8 && H <= 11 && M < 10) {
+			return getFormationToDateInfo(getDateInfoToString(now), "0800");
+		} else if (H >= 11 && H <= 14 && M < 10) {
+			return getFormationToDateInfo(getDateInfoToString(now), "1100");
+		} else if (H >= 14 && H <= 17 && M < 10) {
+			return getFormationToDateInfo(getDateInfoToString(now), "1400");
+		} else if (H >= 17 && H <= 20 && M < 10) {
+			return getFormationToDateInfo(getDateInfoToString(now), "1700");
+		} else if (H >= 20 && M < 10) {
+			return getFormationToDateInfo(getDateInfoToString(now), "2000");
+		} else {
+			return getFormationToDateInfo(getDateInfoToString(now), "2300");
 		}
 	}
 
@@ -196,6 +175,9 @@ public class WeatherService {
 	}
 
 	private DateInfo getFormationToDateInfo(String date,String time){
+		System.out.println("Date="+date);
+		System.out.println("Time="+time);
+
 		return DateInfo.builder()
 				.date(date)
 				.time(time)
